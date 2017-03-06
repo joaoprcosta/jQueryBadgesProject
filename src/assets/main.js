@@ -8,11 +8,14 @@ $(function() {
         }
     })
     .done(function(response){
-        console.log("response", response.courses.completed);
+        console.log("response", response.courses.completed);       
+        addCourses(response.courses.completed);
         function addCourses(courses){
-            var badges = $("#badges");
+            var $badges = $("#badges");
             courses.forEach(function(course){
-                var $course = $('<div />').addClass('course').appendTo('#badges');
+                var $course = $('<div />',{
+                    'class': 'course'
+                    }).appendTo($badges);
                 
                 $('<h3 />', {
                     text: course.title
@@ -30,7 +33,6 @@ $(function() {
                 }).appendTo($course);
             })
         };
-        addCourses(response.courses.completed);
     })
 
 });
